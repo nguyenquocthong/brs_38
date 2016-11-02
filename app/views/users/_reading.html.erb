@@ -1,0 +1,18 @@
+<% if @reading_books.any? %>
+  <% @reading_books.each do |reading_book| %>
+      <%= link_to reading_book do %>
+        <div class="col-md-4">
+        <% if reading_book.cover? %>
+          <%= image_tag reading_book.cover.url%>
+        <% else %>
+          <%= link_to image_tag(Settings.url_cover_book,
+            size: Settings.book.history.size ), reading_book %>
+        <% end %>
+        <div class="row text-center">
+          <%= link_to reading_book.title, reading_book %>
+        </div>
+      </div>
+      
+      <% end %>
+  <% end %>
+<% end %>

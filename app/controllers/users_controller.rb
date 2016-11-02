@@ -24,6 +24,8 @@ class UsersController < ApplicationController
     else
       current_user.active_relationships.build
     end
+    @reading_books = Book.where(id: BookMark.reading)
+    @read_books = Book.where(id: BookMark.read)
   end
   
   def edit

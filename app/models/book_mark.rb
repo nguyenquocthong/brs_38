@@ -6,6 +6,10 @@ class BookMark < ApplicationRecord
   validates :user, presence: true
   validates :book, presence: true
   enum mark_type: [:reading, :read, :unread]
+  scope :reading, ->{
+    joins(:user).where mark_type: Settings.mark.mark_type.reading}
+  scope :read, ->{
+    joins(:user).where mark_type: Settings.mark.mark_type.read}
 
   after_save :create_activity_for_mark_book
   before_destroy :remove_activity_for_mark_book
